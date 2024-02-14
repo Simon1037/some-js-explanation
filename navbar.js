@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentRating = 0;
 
   //FROM HERE
-  // Read sections "Array forEach()" and "Regular and Arrow functions syntax"
+  // Read sections "Array forEach()", "Regular and Arrow functions syntax and "If statement and the rest"
   function updateRatingDisplay(rating) {
     stars.forEach((star, index) => {
       if (index < rating) {

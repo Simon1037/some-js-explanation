@@ -93,7 +93,7 @@ Let's break it down.
 function updateRatingDisplay(rating) {}
 ```
 
-This is a function called "updateRatingDisplay" that has a parameter "rating" which is undefined (it has no value)
+This is a function called "updateRatingDisplay" that has a parameter "rating" which is undefined (it has no value).
 
 ```js
 stars.forEach((star, index) => {});
@@ -106,7 +106,6 @@ stars.forEach((star, index) => {});
 #### Regular and Arrow functions syntax
 
 Is important to know that the syntax shown above is 'Regular functiosyntax' and you are using 'Arrow function syntax'.This means that it does not have it's own 'this' value.
-To be more precise i have asked ChatGPT for a helping hand. So some of it is my own writing and some is not.
 
 Arrow function syntax
 
@@ -127,8 +126,8 @@ array.forEach(function(currentValue, index, arr), thisValue) {
 
 Arrow function syntax:
 
-    Arrow functions do not have their own this. The value of this inside an arrow function is inherited from the enclosing lexical context (i.e., the scope in which the arrow function is defined).
-    Arrow functions have a concise syntax, using =>, which makes them particularly suitable for short, simple functions like the one in your example.
+Arrow functions do not have their own this. The value of this inside an arrow function is inherited from the enclosing lexical context (i.e., the scope in which the arrow function is defined).
+Arrow functions have a concise syntax, using =>, which makes them particularly suitable for short, simple functions like the one in your example.
 
 "enclosing lexical context"
 Lexical Scope: This refers to the scope that is determined at the time the code is written, based on where variables and functions are declared within the code.
@@ -136,8 +135,8 @@ Enclosing Context: This is the context (scope) in which the arrow function is de
 
 Regular function syntax:
 
-    Regular functions have their own this value, which is determined by how they are called. When using forEach, the thisValue parameter allows you to specify the value that this should refer to within the callback function.
-    Regular functions have a more verbose syntax, using the function keyword.
+Regular functions have their own this value, which is determined by how they are called. When using forEach, the thisValue parameter allows you to specify the value that this should refer to within the callback function.
+Regular functions have a more verbose syntax, using the function keyword.
 
 Note that this is the same syntax w3schools uses [w3schools - jsref foreach](https://www.w3schools.com/jsref/jsref_foreach.aspIt)
 
@@ -161,5 +160,44 @@ obj.sayHelloArrow(); // Outputs: Hello, undefined
 
 In the example above:
 
-    Inside sayHello, this refers to the obj object because sayHello is a regular function called as a method of obj.
-    Inside sayHelloArrow, this refers to the global this, because arrow functions inherit this from the enclosing lexical context, which in this case is the global scope. Therefore, this.name doesn't refer to obj.name, resulting in undefined.
+Inside sayHello, this refers to the obj object because sayHello is a regularfunction called as a method of obj.
+Inside sayHelloArrow, this refers to the global this, because arrow functions inherit this from the enclosing lexical context, which in this case is the global scope. Therefore, this.name doesn't refer to obj.name, resulting in undefined.
+
+#### If statement and the rest
+
+Your code:
+
+```js
+if (index < rating) {
+  star.classList.add("selected");
+} else {
+  star.classList.remove("selected");
+}
+```
+
+You can find the syntax from w3schools [JavaScript if, else, and else if](https://www.w3schools.com/js/js_if_else.asp)
+
+If the index is less than to the rating value, it adds the "selected" class to the star element. So if index is greater than or equal, it removes the "selected" class. This ensures that any stars beyond the current rating are not highlighted or marked as selected.
+
+Your Code:
+
+```js
+stars.forEach((star) => {
+  star.addEventListener("click", function () {
+    currentRating = this.getAttribute("data-value");
+    updateRatingDisplay(currentRating);
+  });
+});
+```
+
+```js
+currentRating = this.getAttribute("data-value");
+```
+
+Inside the click event handler function, this refers to the star element that was clicked. The getAttribute("data-value") method retrieves the value of the "data-value" attribute from the clicked star element.
+
+```js
+updateRatingDisplay(currentRating);
+```
+
+After retrieving the rating value from the clicked star, this line calls the updateRatingDisplay function, passing the retrieved currentRating value as an argument. This function is responsible for updating the visual display of the rating system based on the new rating value.
